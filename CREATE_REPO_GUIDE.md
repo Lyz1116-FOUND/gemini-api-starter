@@ -20,9 +20,9 @@
    - Private（私有）- 只有你可以看到
 
 4. **重要：不要初始化**
-   - ❌ 不要勾选 "Add a README file"
-   - ❌ 不要勾选 "Add .gitignore"
-   - ❌ 不要勾选 "Choose a license"
+   -  不要勾选 "Add a README file"
+   -  不要勾选 "Add .gitignore"
+   -  不要勾选 "Choose a license"
    - 因为我们已经有了这些文件！
 
 5. **点击 "Create repository"**
