@@ -64,7 +64,7 @@ git branch -M main
 git push -u origin main --force
 ```
 
-⚠️ **警告**: `--force` 会覆盖远程仓库的内容，只在确定安全时使用！
+ **警告**: `--force` 会覆盖远程仓库的内容，只在确定安全时使用！
 
 ### 步骤 4: 如果遇到认证问题
 
