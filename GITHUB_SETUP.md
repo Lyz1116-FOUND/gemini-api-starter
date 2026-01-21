@@ -57,7 +57,7 @@ git commit -m "Initial commit: Gemini 3 Flash API 入门项目"
    - **Repository name**: `gemini-api-starter` (或你喜欢的名称)
    - **Description**: `Google Gemini 3 Flash API 入门项目 - 适合AI专业大二学生`
    - **Visibility**: 选择 `Public` (公开) 或 `Private` (私有)
-   - ⚠️ **不要**勾选 "Initialize this repository with a README"（因为我们已经有了）
+   - **不要**勾选 "Initialize this repository with a README"（因为我们已经有了）
 4. 点击 `Create repository`
 
 ### 步骤 5：连接本地仓库到 GitHub
@@ -143,15 +143,15 @@ git remote set-url origin https://github.com/新用户名/新仓库名.git
 
 ## 安全提示
 
-⚠️ **重要**:
-- ✅ `.env` 文件已在 `.gitignore` 中，不会被上传
-- ✅ `config.py` 已在 `.gitignore` 中，不会被上传
-- ❌ **永远不要**将 API 密钥提交到 GitHub
-- ❌ **永远不要**将密码、token 等敏感信息提交到仓库
+ **重要**:
+-  `.env` 文件已在 `.gitignore` 中，不会被上传
+-  `config.py` 已在 `.gitignore` 中，不会被上传
+-  **永远不要**将 API 密钥提交到 GitHub
+-  **永远不要**将密码、token 等敏感信息提交到仓库
 
 ## 完成！
 
-项目已成功发布到 GitHub！🎉
+项目已成功发布到 GitHub！
 
 现在你可以：
 - 分享仓库链接给他人
