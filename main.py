@@ -64,7 +64,7 @@ def main():
         # 初始化模型
         print("正在初始化 Gemini 模型...")
         model = initialize_gemini()
-        print("✓ 模型初始化成功！\n")
+        print("✓模型初始化成功！\n")
 
         # 示例对话
         examples = [
