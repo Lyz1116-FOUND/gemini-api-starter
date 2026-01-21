@@ -4,10 +4,23 @@ Google Gemini API 使用示例
 """
 
 import os
-import google.generativeai as genai
+from google import genai
 from dotenv import load_dotenv
 
 load_dotenv()
+
+
+def _get_client_and_model():
+    api_key = os.getenv("GOOGLE_API_KEY") or os.getenv("GEMINI_API_KEY")
+    if not api_key:
+        raise ValueError("未找到 GOOGLE_API_KEY（或 GEMINI_API_KEY），请先在 .env 中设置")
+    client = genai.Client(api_key=api_key)
+    model_name = (
+        os.getenv("GEMINI_MODEL")
+        or os.getenv("GOOGLE_GEMINI_MODEL")
+        or "gemini-2.5-flash-lite"
+    )
+    return client, model_name
 
 def example_1_simple_chat():
     """示例1：简单的单次对话"""
@@ -15,25 +28,10 @@ def example_1_simple_chat():
     print("示例1：简单的单次对话")
     print("=" * 50)
 
-    genai.configure(api_key=os.getenv("GOOGLE_API_KEY"))
-    # 使用 Gemini 3 Flash 模型（自动选择可用版本）
-    models_to_try = [
-        'gemini-2.0-flash-exp',
-        'gemini-1.5-flash-latest',
-        'gemini-1.5-flash'
-    ]
-    model = None
-    for model_name in models_to_try:
-        try:
-            model = genai.GenerativeModel(model_name)
-            break
-        except Exception:
-            continue
-    if model is None:
-        raise ValueError("无法初始化 Gemini 模型")
+    client, model_name = _get_client_and_model()
 
     prompt = "用一句话介绍Python编程语言"
-    response = model.generate_content(prompt)
+    response = client.models.generate_content(model=model_name, contents=prompt)
     print(f"问题: {prompt}")
     print(f"回答: {response.text}\n")
 
@@ -43,24 +41,8 @@ def example_2_multiturn_chat():
     print("示例2：多轮对话")
     print("=" * 50)
 
-    genai.configure(api_key=os.getenv("GOOGLE_API_KEY"))
-    # 使用 Gemini 3 Flash 模型（自动选择可用版本）
-    models_to_try = [
-        'gemini-2.0-flash-exp',
-        'gemini-1.5-flash-latest',
-        'gemini-1.5-flash'
-    ]
-    model = None
-    for model_name in models_to_try:
-        try:
-            model = genai.GenerativeModel(model_name)
-            break
-        except Exception:
-            continue
-    if model is None:
-        raise ValueError("无法初始化 Gemini 模型")
-
-    chat = model.start_chat(history=[])
+    client, model_name = _get_client_and_model()
+    chat = client.chats.create(model=model_name)
 
     # 第一轮对话
     response1 = chat.send_message("我叫小明，我喜欢编程")
@@ -78,22 +60,7 @@ def example_3_batch_questions():
     print("示例3：批量问题处理")
     print("=" * 50)
 
-    genai.configure(api_key=os.getenv("GOOGLE_API_KEY"))
-    # 使用 Gemini 3 Flash 模型（自动选择可用版本）
-    models_to_try = [
-        'gemini-2.0-flash-exp',
-        'gemini-1.5-flash-latest',
-        'gemini-1.5-flash'
-    ]
-    model = None
-    for model_name in models_to_try:
-        try:
-            model = genai.GenerativeModel(model_name)
-            break
-        except Exception:
-            continue
-    if model is None:
-        raise ValueError("无法初始化 Gemini 模型")
+    client, model_name = _get_client_and_model()
 
     questions = [
         "什么是机器学习？",
@@ -102,7 +69,7 @@ def example_3_batch_questions():
     ]
 
     for i, question in enumerate(questions, 1):
-        response = model.generate_content(question)
+        response = client.models.generate_content(model=model_name, contents=question)
         print(f"问题{i}: {question}")
         print(f"回答: {response.text[:100]}...\n")  # 只显示前100个字符
 
@@ -112,40 +79,20 @@ def example_4_streaming():
     print("示例4：流式输出")
     print("=" * 50)
 
-    genai.configure(api_key=os.getenv("GOOGLE_API_KEY"))
-    # 使用 Gemini 3 Flash 模型（自动选择可用版本）
-    models_to_try = [
-        'gemini-2.0-flash-exp',
-        'gemini-1.5-flash-latest',
-        'gemini-1.5-flash'
-    ]
-    model = None
-    for model_name in models_to_try:
-        try:
-            model = genai.GenerativeModel(model_name)
-            break
-        except Exception:
-            continue
-    if model is None:
-        raise ValueError("无法初始化 Gemini 模型")
+    client, model_name = _get_client_and_model()
 
     prompt = "介绍一下人工智能的发展历史"
     print(f"问题: {prompt}")
     print("回答: ", end="", flush=True)
 
-    response = model.generate_content(prompt, stream=True)
-    for chunk in response:
+    for chunk in client.models.generate_content_stream(model=model_name, contents=prompt):
         print(chunk.text, end="", flush=True)
     print("\n")
 
 def main():
     """运行所有示例"""
     try:
-        api_key = os.getenv("GOOGLE_API_KEY")
-        if not api_key:
-            print("错误：未找到 GOOGLE_API_KEY")
-            print("请在 .env 文件中设置 API 密钥")
-            return
+        _get_client_and_model()
 
         # 运行示例
         example_1_simple_chat()

@@ -34,12 +34,16 @@ cd gemini-api-starter
 ### 2. 安装依赖
 
 ```bash
-pip install -r requirements.txt
+# 如果你使用 conda 环境（例如 pytorch-cu128），先激活它
+conda activate pytorch-cu128
+
+# 用当前环境的解释器安装依赖，避免装到系统 Python
+python -m pip install -r requirements.txt
 ```
 
 ### 3. 获取 Google API 密钥
 
-1. 访问 [Google AI Studio](https://makersuite.google.com/app/apikey)
+1. 访问 [Google AI Studio](https://aistudio.google.com/app/apikey)
 2. 登录你的 Google 账号
 3. 创建新的 API 密钥
 4. 复制你的 API 密钥
@@ -62,6 +66,25 @@ echo "GOOGLE_API_KEY=你的API密钥" > .env
 python main.py
 ```
 
+**推荐：自动使用指定 conda 环境运行（避免误用 /bin/python3）：**
+```bash
+chmod +x run.sh
+./run.sh main
+```
+
+**VS Code 里推荐用 Task 运行（会让你选择 conda 环境，不需要固定解释器）：**
+1. 打开命令面板：`Ctrl+Shift+P`
+2. 选择：`Tasks: Run Task`
+3. 选择：`Gemini: Run (choose conda env)`
+4. 按提示输入环境名（例如 `pytorch-cu128`）并选择入口（`main.py` / `example.py`）
+
+说明：VS Code Task 在部分环境下可能无法进行交互式输入。
+如果你看到 `EOF when reading a line`，请直接在终端交互运行：
+```bash
+conda activate pytorch-cu128
+python main.py
+```
+
 **运行示例代码（学习不同的API用法）：**
 ```bash
 python example.py
@@ -76,7 +99,7 @@ Google Gemini API 入门项目
 ==================================================
 
 正在初始化 Gemini 模型...
-使用模型: gemini-2.0-flash-exp
+使用模型: gemini-2.5-flash-lite
 ✓ 模型初始化成功！
 
 开始对话（输入 'quit' 退出）
@@ -120,7 +143,7 @@ Gemini: 人工智能（AI）是计算机科学的一个分支...
 ## 技术栈
 
 - Python 3.7+
-- google-generativeai: Google Gemini API SDK
+- google-genai: Google Gemini API SDK
 - python-dotenv: 环境变量管理
 
 ## 注意事项
@@ -133,7 +156,7 @@ Gemini: 人工智能（AI）是计算机科学的一个分支...
 
 - [Google Gemini API 文档](https://ai.google.dev/docs)
 - [Python SDK 文档](https://ai.google.dev/api/python)
-- [获取 API 密钥](https://makersuite.google.com/app/apikey)
+- [获取 API 密钥](https://aistudio.google.com/app/apikey)
 
 ## 许可证
 
