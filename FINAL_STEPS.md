@@ -1,23 +1,23 @@
-# 🚀 最终推送步骤
+#  最终推送步骤
 
-## ✅ 已完成
-- ✅ Git 用户信息已配置
-- ✅ 所有文件已提交
-- ✅ 分支已设置为 main
-- ✅ 远程仓库地址已配置
+##  已完成
+-  Git 用户信息已配置
+-  所有文件已提交
+-  分支已设置为 main
+-  远程仓库地址已配置
 
-## 📋 接下来需要做的
+##  接下来需要做的
 
 ### 步骤 1: 在 GitHub 上创建仓库
 
 **快速创建链接：**
-👉 https://github.com/new
+ https://github.com/new
 
 **填写信息：**
 - **Repository name**: `gemini-api-starter`
 - **Description**: `Google Gemini 3 Flash API 入门项目 - 适合AI专业大二学生学习`
 - **Visibility**: 选择 `Public`（公开）或 `Private`（私有）
-- ⚠️ **重要**: 不要勾选任何初始化选项（README、.gitignore、license）
+-  **重要**: 不要勾选任何初始化选项（README、.gitignore、license）
 
 点击 **"Create repository"**
 
@@ -51,7 +51,7 @@ git push -u origin main
 https://github.com/Lyz1116-FOUND/gemini-api-starter
 ```
 
-## 🎯 一键执行（创建仓库后）
+##  一键执行（创建仓库后）
 
 或者直接运行自动化脚本：
 ```bash
@@ -59,7 +59,7 @@ cd /home/lyz/gemini-api-starter
 ./complete_setup.sh
 ```
 
-## 📝 项目文件清单
+##  项目文件清单
 
 你的项目包含以下文件：
 - `main.py` - 主程序（交互式对话）
@@ -73,6 +73,6 @@ cd /home/lyz/gemini-api-starter
 - `CREATE_REPO_GUIDE.md` - 仓库创建指南
 - `fix_push_error.md` - 错误解决指南
 
-## ✨ 完成！
+##  完成！
 
 推送成功后，你的项目就发布到 GitHub 了！🎉
