@@ -79,7 +79,7 @@ echo "4. Visibility: 选择 Public 或 Private"
 echo "5. ⚠️  不要勾选任何初始化选项（README, .gitignore, license）"
 echo "6. 点击 'Create repository'"
 echo ""
-read -p "按 Enter 键继续（确保已创建仓库）..." 
+read -p "按 Enter 键继续（确保已创建仓库）..."
 
 # 6. 尝试推送
 echo ""
