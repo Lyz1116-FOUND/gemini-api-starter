@@ -75,4 +75,4 @@ cd /home/lyz/gemini-api-starter
 
 ##  完成！
 
-推送成功后，你的项目就发布到 GitHub 了！🎉
+推送成功后，你的项目就发布到 GitHub 了！
